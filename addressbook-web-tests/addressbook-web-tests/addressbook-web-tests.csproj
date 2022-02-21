@@ -62,11 +62,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountData.cs" />
+    <Compile Include="ContactData.cs" />
     <Compile Include="GroupData.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GroupCreationTests.cs" />
     <Compile Include="NewGroupCreationTest.cs" />
+    <Compile Include="ContactCreationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
