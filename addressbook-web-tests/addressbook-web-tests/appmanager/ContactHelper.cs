@@ -22,19 +22,19 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper Modify(int v, ContactData newData)
+        public ContactHelper Modify(ContactData newData)
         {
             manager.Navigator.GoToHomePage();
-            InitContactModification(v);
+            InitContactModification();
             FillContactForm(newData);
             SubmitContactModification();
             return this;
         }
 
-        public ContactHelper Remove(int v)
+        public ContactHelper Remove()
         {
             manager.Navigator.GoToHomePage();
-            SelectContact(v);
+            SelectContact();
             DeleteContact();
             driver.SwitchTo().Alert().Accept();
             return this;
@@ -72,9 +72,9 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper SelectContact(int index)
+        public ContactHelper SelectContact()
         {
-            driver.FindElement(By.Id($"{index}")).Click();
+            driver.FindElement(By.Name("selected[]")).Click();
 
             return this;
         }
@@ -86,9 +86,9 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper InitContactModification(int v)
+        public ContactHelper InitContactModification()
         {
-            driver.FindElement(By.XPath($"//a[@href='edit.php?id={v}']")).Click();
+            driver.FindElement(By.XPath("//img[@src='icons/pencil.png']")).Click();
             return this;
         }
 

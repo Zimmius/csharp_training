@@ -13,7 +13,7 @@ namespace WebAddressbookTests
         [Test]
         public void ContactRemovalTest()
             {
-                app.Contact.Remove(7);
+                app.Contact.Remove();
             }
 
     }
