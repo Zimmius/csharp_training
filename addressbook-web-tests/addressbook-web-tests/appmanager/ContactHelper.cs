@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
@@ -24,6 +25,18 @@ namespace WebAddressbookTests
             SubmitContactCreation();
             manager.Navigator.GoToHomePage();
             return this;
+        }
+
+        public List<ContactData> GetContactList()
+        {
+            List <ContactData> contacts = new List<ContactData>();
+            manager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+            foreach (IWebElement element in elements)
+            {
+                contacts.Add(new ContactData(element.Text));
+            }
+            return contacts;
         }
 
         public ContactHelper Modify(int v, ContactData newData)
@@ -68,7 +81,7 @@ namespace WebAddressbookTests
 
         public ContactHelper SelectContact(int index)
         {
-            driver.FindElement(By.XPath("//tr[@name='entry'][" + index + "]//input")).Click();
+            driver.FindElement(By.XPath("//tr[@name='entry'][" + (index+1) + "]//input")).Click();
 
             return this;
         }
@@ -94,7 +107,7 @@ namespace WebAddressbookTests
 
         public ContactHelper CreateContactIfNotPresent(int index)
         {
-            if (!IsElementPresent(By.XPath("//tr[@name='entry'][" + index + "]//input")))
+            if (!IsElementPresent(By.Name("entry")))
             {
                 ContactData newContact = new ContactData("NEWNEWNEW");
                 newContact.Lastname = "TESTNEWCONTACT";

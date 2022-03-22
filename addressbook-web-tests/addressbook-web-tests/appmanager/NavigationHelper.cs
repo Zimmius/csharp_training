@@ -21,11 +21,11 @@ namespace WebAddressbookTests
 
         public void GoToHomePage()
         {
-            if (driver.Url == baseURL + "/addressbook/")
+            if (driver.Url == baseURL)
             {
                 return;
             }
-            driver.Navigate().GoToUrl(baseURL + "/addressbook/");
+            driver.Navigate().GoToUrl(baseURL);
         }
         public void GoToGroupsPage()
         {
