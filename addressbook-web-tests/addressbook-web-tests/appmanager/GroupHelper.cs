@@ -112,10 +112,5 @@ namespace WebAddressbookTests
 
             return this;
         }
-
-        private bool isGroupPresent()
-        {
-            return IsElementPresent(By.ClassName("group"));
-        }
     }
 }
