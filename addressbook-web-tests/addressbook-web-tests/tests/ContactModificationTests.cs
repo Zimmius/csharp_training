@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using OpenQA.Selenium;
 
 namespace WebAddressbookTests
 {
@@ -15,6 +16,11 @@ namespace WebAddressbookTests
         {
             ContactData newData = new ContactData("qweq");
             newData.Lastname = null;
+
+            if (!app.Contact.IsElementPresent(By.Name("entry")))
+            {
+                app.Contact.Create(new ContactData("Vasiliy"));
+            }
 
             List<ContactData> oldContacts = app.Contact.GetContactList();
 

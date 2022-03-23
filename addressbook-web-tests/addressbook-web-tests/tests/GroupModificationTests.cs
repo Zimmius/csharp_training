@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using OpenQA.Selenium;
 
 namespace WebAddressbookTests
 {
@@ -17,6 +18,11 @@ namespace WebAddressbookTests
             newData.Header = null;
             newData.Footer = null;
 
+            if (app.Groups.IsElementPresent(By.Name("group")))
+            {
+                app.Groups.Create(new GroupData("gruppa krovi na rukave"));
+            }
+           
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
             app.Groups.Modify(0, newData);
