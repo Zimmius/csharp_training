@@ -18,7 +18,7 @@ namespace WebAddressbookTests
             newData.Header = null;
             newData.Footer = null;
 
-            if (app.Groups.IsElementPresent(By.Name("group")))
+            if (!app.Groups.IsElementPresent(By.Name("group")))
             {
                 app.Groups.Create(new GroupData("gruppa krovi na rukave"));
             }
