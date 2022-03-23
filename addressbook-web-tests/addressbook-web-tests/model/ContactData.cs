@@ -48,6 +48,7 @@ namespace WebAddressbookTests
                 }
             }
             return Lastname.CompareTo(other.Lastname);
+
         }
 
         public override string ToString()
