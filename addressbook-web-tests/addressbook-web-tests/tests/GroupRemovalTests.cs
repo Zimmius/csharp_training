@@ -14,7 +14,7 @@ namespace WebAddressbookTests
         [Test]
         public void GroupRemovalTest()
         {
-            if (!app.Groups.IsElementPresent(By.Name("group")))
+            if (app.Groups.IsElementPresent(By.Name("group")) != true)
             {
                 app.Groups.Create(new GroupData("newGroup"));
             }

@@ -14,7 +14,7 @@ namespace WebAddressbookTests
         [Test]
         public void ContactRemovalTest()
         {
-            if (!app.Contact.IsElementPresent(By.Name("entry")))
+            if (app.Contact.IsElementPresent(By.Name("entry")) != true)
             {
                 app.Contact.Create(new ContactData("HEHO"));
             }
