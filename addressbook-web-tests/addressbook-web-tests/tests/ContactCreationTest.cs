@@ -13,8 +13,8 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            ContactData contact = new ContactData("byuud");
-            contact.Lastname = "asdaa";
+            ContactData contact = new ContactData("Vasya");
+            contact.Lastname = "Test";
 
             List<ContactData> oldContacts = app.Contact.GetContactList();
 

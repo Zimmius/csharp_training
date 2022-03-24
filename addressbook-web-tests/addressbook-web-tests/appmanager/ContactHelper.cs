@@ -34,7 +34,10 @@ namespace WebAddressbookTests
             ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
             foreach (IWebElement element in elements)
             {
-                contacts.Add(new ContactData(element.Text));
+                IList<IWebElement> cells = element.FindElements(By.TagName("td"));
+                ContactData listData = new ContactData(cells[2].Text);
+                listData.Lastname = cells[1].Text;
+                contacts.Add(listData);
             }
             return contacts;
         }
@@ -54,6 +57,7 @@ namespace WebAddressbookTests
             SelectContact(v);
             DeleteContact();
             driver.SwitchTo().Alert().Accept();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             return this;
         }
 
