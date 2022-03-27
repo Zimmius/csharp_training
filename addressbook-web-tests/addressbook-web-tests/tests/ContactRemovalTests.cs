@@ -12,7 +12,7 @@ namespace WebAddressbookTests
     public class ContactRemovalTests : AuthTestBase
     {
         [Test]
-        public void ContactRemovalTest()
+            public void ContactRemovalTest()
         {
             List<ContactData> oldContacts = app.Contact.GetContactList();
 
@@ -29,6 +29,5 @@ namespace WebAddressbookTests
 
             Assert.AreEqual(oldContacts, newContacts);
         }
-
     }
 }
