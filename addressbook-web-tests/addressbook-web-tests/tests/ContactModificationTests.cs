@@ -14,12 +14,11 @@ namespace WebAddressbookTests
         [Test]
         public void ContactModificationTest()
         {
-            ContactData newData = new ContactData("qweq");
-            newData.Lastname = null;
+            ContactData newData = new ContactData("qweq", null);
 
             if (app.Contact.IsElementPresent(By.Name("entry")) != true)
             {
-                app.Contact.Create(new ContactData("Vasiliy"));
+                app.Contact.Create(new ContactData("Vasiliy", null));
             }
 
             List<ContactData> oldContacts = app.Contact.GetContactList();

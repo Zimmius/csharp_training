@@ -18,7 +18,7 @@ namespace WebAddressbookTests
 
             if (app.Contact.IsElementPresent(By.Name("selected[]")) != true)
             {
-                app.Contact.Create(new ContactData("HEHO"));
+                app.Contact.Create(new ContactData("HEHO", null));
             }
 
             app.Contact.Remove(0);
