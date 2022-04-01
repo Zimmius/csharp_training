@@ -11,6 +11,7 @@ namespace WebAddressbookTests
     {
         private string allPhones;
         private string detailedInformation;
+        private string emails;
 
         public ContactData(string firstname, string lastname)
         {
@@ -66,8 +67,15 @@ namespace WebAddressbookTests
 
         public string WorkPhone { get; set; }
 
+        public string Email { get; set; }
+
+        public string Email2 { get; set; }
+
+        public string Email3 { get; set; }
+
         public string AllPhones { 
-            get {
+            get 
+            {
                 if (allPhones != null)
                 {
                     return allPhones;
@@ -77,9 +85,29 @@ namespace WebAddressbookTests
                     return (CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)).Trim();
                 }
             } 
-            set {
+            set 
+            {
                 allPhones = value;
             } 
+        }
+
+        public string Emails
+        {
+            get
+            {
+                if (emails != null)
+                {
+                    return emails;
+                }
+                else
+                {
+                    return (Email + "\r\n" + Email2 + "\r\n" + Email3).Trim();
+                }
+            }
+            set
+            {
+                emails = value;
+            }
         }
 
         public string DetailedInformation
