@@ -167,13 +167,15 @@ namespace WebAddressbookTests
             manager.Navigator.GoToHomePage();
             driver.FindElement(By.XPath("//tr[@name='entry'][" + (index + 1) + "]//img[@src='icons/status_online.png']")).Click();
 
-            string[] cells = driver.FindElement(By.CssSelector("div#content")).FindElement(By.TagName("b")).Text.Split(' ');
-            string firstname = cells[0];
-            string lastname = cells[1];
+            ////string[] cells = driver.FindElement(By.CssSelector("div#content")).FindElement(By.TagName("b")).Text.Split(' ');
+            //string fullname = driver.FindElement(By.CssSelector("div#content")).FindElement(By.TagName("b")).Text;
+            //string[] cells = fullname.Split(' ');
+            //string firstname = cells[0];
+            //string lastname = cells[1];
             
             string detailedContactInformation = driver.FindElement(By.CssSelector("div#content")).Text;
 
-            return new ContactData(firstname, lastname)
+            return new ContactData(null, null)
             {
                 DetailedInformation = detailedContactInformation
             };

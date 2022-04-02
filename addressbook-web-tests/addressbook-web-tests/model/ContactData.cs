@@ -82,7 +82,7 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                    return (CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)).Trim();
+                    return (CleanUpPhones(HomePhone) + CleanUpPhones(MobilePhone) + CleanUpPhones(WorkPhone)).Trim();
                 }
             } 
             set 
@@ -101,7 +101,19 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                    return (Email + "\r\n" + Email2 + "\r\n" + Email3).Trim();
+                    if (Email != "")
+                    {
+                        Email = Email + "\r\n";
+                    }
+                    if (Email2 != "")
+                    {
+                        Email2 = Email2 + "\r\n";
+                    }
+                    if (Email3 != "")
+                    {
+                        Email3 = Email3 + "\r\n";
+                    }
+                    return (Email + Email2 + Email3).Trim();
                 }
             }
             set
@@ -120,7 +132,11 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                    return (Firstname + " " + Lastname  + "\r\n" + Address + "\r\n" + "\r\n" + "H: " + HomePhone + "\r\n" + "M: " + MobilePhone + "\r\n" + "W: " + WorkPhone).Trim();
+                    if (Lastname != "")
+                    {
+                        Lastname = " " + Lastname;
+                    }
+                    return (Firstname + Lastname + "\r\n" + CleanUpAddress(Address) + DetaliedPhones(HomePhone, MobilePhone, WorkPhone) + "\r\n" + Emails).Trim();
                 }
             }
             set
@@ -129,7 +145,7 @@ namespace WebAddressbookTests
             }
         }
 
-        private string CleanUp(string phone)
+        private string CleanUpPhones(string phone)
         {
             if (phone == null || phone == "")
             {
@@ -137,6 +153,38 @@ namespace WebAddressbookTests
             }
             return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
             //return Regex.Replace(phone, "[ -()]", "") + "\r\n";
+        }
+
+        private string CleanUpAddress(string address)
+        {
+            if (address == null || address == "")
+            {
+                return "";
+            }
+            return  address.Replace(" ", "") + "\r\n";
+        }
+
+        private string DetaliedPhones(string homePhone, string mobilePhone, string workPhone)
+        {
+            if (homePhone == "" & mobilePhone == "" & workPhone == "")
+            {
+                return "";
+            }
+
+            if (homePhone != "")
+            {
+                homePhone = "H: " + homePhone + "\r\n";
+            }
+            if (mobilePhone != "")
+            {
+                mobilePhone = "M: " + mobilePhone + "\r\n";
+            }
+            if (workPhone != "")
+            {
+                workPhone = "W: " + workPhone + "\r\n";
+            }
+
+            return "\r\n" + homePhone + mobilePhone + workPhone;
         }
     }
 }
