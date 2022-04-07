@@ -54,7 +54,7 @@ namespace WebAddressbookTests
             Excel.Workbook wb = app.Workbooks.Open(Path.Combine(Directory.GetCurrentDirectory(), @"groups.xlsx"));
             Excel.Worksheet sheet = wb.Sheets[1];
             Excel.Range range = sheet.UsedRange;
-            for (int i = 1; 1 <= range.Rows.Count; i++)
+            for (int i = 1; i <= range.Rows.Count; i++)
             {
                 groups.Add(new GroupData()
                 {
