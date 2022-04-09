@@ -9,9 +9,21 @@ namespace WebAddressbookTests
 {
     public class RemovingContactFromGroup : AuthTestBase
     {
+        [Test]
         public void TestRemovingContactFromGroup()
         {
+            GroupData group = GroupData.GetAll()[0];
+            List<ContactData> oldList = group.GetContacts();
+            ContactData contact = oldList[0];
 
+            //actions
+            app.Contact.RemoveContactFromGroup(contact, group);
+
+            List<ContactData> newList = group.GetContacts();
+            oldList.Remove(contact);
+            newList.Sort();
+            oldList.Sort();
+            Assert.AreEqual(oldList, newList);
         }
     }
 }
