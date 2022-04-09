@@ -9,25 +9,32 @@ using OpenQA.Selenium;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactRemovalTests : AuthTestBase
+    public class ContactRemovalTests : ContactTestBase
     {
         [Test]
-            public void ContactRemovalTest()
+        public void ContactRemovalTest()
         {
-            List<ContactData> oldContacts = app.Contact.GetContactList();
-
             if (app.Contact.IsElementPresent(By.Name("selected[]")) != true)
             {
                 app.Contact.Create(new ContactData("HEHO", null));
             }
 
-            app.Contact.Remove(0);
+            List<ContactData> oldContacts = ContactData.GetAll();
 
-            List<ContactData> newContacts = app.Contact.GetContactList();
+            ContactData toBeRemoved = oldContacts[0];
+
+            app.Contact.Remove(toBeRemoved);
+
+            List<ContactData> newContacts = ContactData.GetAll();
 
             oldContacts.RemoveAt(0);
 
             Assert.AreEqual(oldContacts, newContacts);
+
+            foreach (ContactData contact in newContacts)
+            {
+                Assert.AreNotEqual(contact.Id, toBeRemoved.Id);
+            }
         }
     }
 }

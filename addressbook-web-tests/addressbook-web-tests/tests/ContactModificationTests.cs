@@ -9,27 +9,37 @@ using OpenQA.Selenium;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactModificationTests : AuthTestBase
+    public class ContactModificationTests : ContactTestBase
     {
         [Test]
         public void ContactModificationTest()
         {
-            ContactData newData = new ContactData("qweq", null);
-
             if (app.Contact.IsElementPresent(By.Name("entry")) != true)
             {
                 app.Contact.Create(new ContactData("Vasiliy", null));
             }
 
-            List<ContactData> oldContacts = app.Contact.GetContactList();
+            ContactData newData = new ContactData("qweq", null);
 
-            app.Contact.Modify(0, newData);
+            List<ContactData> oldContacts = ContactData.GetAll();
 
-            List<ContactData> newContacts = app.Contact.GetContactList();
-            oldContacts[0].Firstname = newData.Firstname;
+            ContactData toBeModified = oldContacts[0];
+
+            app.Contact.Modify(toBeModified, newData);
+
+            List<ContactData> newContacts = ContactData.GetAll();
+            toBeModified.Firstname = newData.Firstname;
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
+
+            foreach (ContactData contact in newContacts)
+            {
+                if (contact.Id == toBeModified.Id)
+                {
+                    Assert.AreEqual(newData.Firstname, contact.Firstname);
+                }
+            }
         }
     }
 }
