@@ -66,9 +66,9 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("add")).Click();
         }
 
-        public void SelectGroupToAdd(string name)
+        public void SelectGroupToAdd(string groupName)
         {
-            new SelectElement(driver.FindElement(By.Name("to_group"))).SelectByText(name);
+            new SelectElement(driver.FindElement(By.Name("to_group"))).SelectByText(groupName);
         }
 
         public void ClearGroupFilter()
